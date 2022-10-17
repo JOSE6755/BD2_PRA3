@@ -1,0 +1,80 @@
+------------Consulta 1
+use "Practica3";
+
+create table locales(
+	temporada text,
+	jornada text,
+	equipo1 text,
+	equipo2 text,
+	goles1 text,
+	goles2 text,
+	primary key((temporada,equipo1),jornada)
+);
+use "Practica3";
+select * from locales where temporada='2020-2021' and equipo1='Granada' order by jornada;
+--------------CONSULTA 2
+use "Practica3";
+select * from visitantes where temporada='2020-2021' and equipo2='Granada' order by jornada;
+create table visitantes(
+	temporada text,
+	jornada text,
+	equipo1 text,
+	equipo2 text,
+	goles1 text,
+	goles2 text,
+	primary key((temporada,equipo2),jornada)
+);
+
+---------------------CONSULTA 3
+use "Practica3";
+select goles1,goles2 from marcadores where temporada='2020-2021' and equipo1='Real Madrid' and equipo2='Getafe';
+create table marcadores(
+	temporada text,
+	jornada text,
+	equipo1 text,
+	equipo2 text,
+	goles1 text,
+	goles2 text,
+	primary key((temporada,equipo1,equipo2),jornada)
+);
+----------------------CONSULTA 4
+
+----------------------CONSULTA 5
+use "Practica3";
+create table rival(
+	temporada text,
+	jornada text,
+	equipo1 text,
+	equipo2 text,
+	goles1 text,
+	goles2 text,
+	primary key((equipo1,jornada,temporada),equipo2)
+);
+
+select equipo2 from "Practica3".rival where equipo1='Real Madrid' and jornada='1' and temporada='2020-2021';
+-------------------CONSULTA 6
+use "Practica3";
+create table resultados(
+	temporada text,
+	jornada text,
+	equipo1 text,
+	equipo2 text,
+	goles1 text,
+	goles2 text,
+	primary key((equipo1,temporada),equipo2,jornada)
+);
+use "Practica3";
+create table resultados2(
+	temporada text,
+	jornada text,
+	equipo1 text,
+	equipo2 text,
+	goles1 text,
+	goles2 text,
+	primary key((equipo2,temporada),equipo1,jornada)
+);
+drop table "Practica3".resultados;
+select goles1,goles2 from "Practica3".resultados 
+where equipo1='Real Madrid' and temporada='2020-2021';
+
+
